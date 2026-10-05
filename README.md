@@ -1,4 +1,4 @@
-markdown
+```markdown
 # 🛡️ SentinelPot: Intelligent Low-Interaction SSH Honeypot & Threat Analytics
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
@@ -13,12 +13,14 @@ A custom, low-interaction SSH honeypot and threat intelligence engine engineered
 ## 📌 Architecture Overview
 
 
+```
 
+```
              [ Inbound SSH Traffic / Scanners ]
                             │
                             ▼
 
-
+```
 
 ┌───────────────────────────────────────────────────────────────┐
 │ Phase 1: Core Honeypot Daemon (Python / Paramiko)             │
@@ -44,7 +46,7 @@ A custom, low-interaction SSH honeypot and threat intelligence engine engineered
 │ - TF-IDF + K-Means: Automated clustering of payload campaigns │
 └───────────────────────────────────────────────────────────────┘
 
-
+```
 
 ---
 
@@ -63,7 +65,7 @@ A custom, low-interaction SSH honeypot and threat intelligence engine engineered
 
 ## 📂 Project Structure
 
-text
+```text
 .
 ├── config/
 │   └── settings.yaml          # Network and port configurations
@@ -89,30 +91,30 @@ text
 ├── requirements.txt           # Python dependencies
 └── README.md
 
-
+```
 
 ---
 
- 🚀 Getting Started
+## 🚀 Getting Started
 
- Prerequisites
+### Prerequisites
 
 * Python 3.10 or higher
 * Git
 * Virtual environment (`venv`)
 
- Installation & Setup
+### Installation & Setup
 
-1. Clone the repository:
-bash
+1. **Clone the repository:**
+```bash
 git clone [https://github.com/your-username/HoneyPot.git](https://github.com/your-username/HoneyPot.git)
 cd HoneyPot
 
-
+```
 
 
 2. **Set up a virtual environment:**
-bash
+```bash
 python3 -m venv venv
 source venv/bin/activate
 # Windows: venv\Scripts\activate
