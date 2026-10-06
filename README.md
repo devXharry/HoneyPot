@@ -179,29 +179,6 @@ All activity is recorded into `honeypot_events.jsonl`:
 
 ```
 
----
-
-## 🗺️ 45-Day Development Roadmap
-
-* [x] **Phase 1: Foundations (Days 1–15)**
-* [x] Raw TCP socket listener and multithreaded worker handling.
-* [x] Paramiko SSHv2 handshake and authentication interception.
-* [x] Interactive pseudo-terminal (PTY) shell emulation.
-* [ ] Standardized `.jsonl` logging and file rotating pipeline.
-
-
-* [ ] **Phase 2: Threat Enrichment (Days 16–30)**
-* [ ] MaxMind GeoLite2 country/city/ASN resolution.
-* [ ] AbuseIPDB / AlienVault OTX asynchronous reputation checks.
-* [ ] SQLite ingestion pipeline for analytical reporting.
-
-
-* [ ] **Phase 3: Machine Learning & Analytics (Days 31–45)**
-* [ ] Feature engineering (connection duration, command frequency, payload entropy).
-* [ ] Isolation Forest anomaly scoring for atypical attack sessions.
-* [ ] TF-IDF + K-Means clustering for automated payload taxonomy.
-
-
 
 ---
 
