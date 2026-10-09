@@ -80,3 +80,55 @@ def interactive_shell(channel, client_ip, client_port):
         except Exception:
             break
     channel.close()
+def handel_ssh_client(client_socket, client_address, host_key):
+    ip, port = client_address
+    print(f"[+] Inbound TCP Connection from {ip}:{port}")
+    transport = None
+
+    try:
+        transport = paramiko.Transport(client_socket)
+        transport.local_version = "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1"
+        transport.add_server_key(host_key)
+
+        server_interface = HoneypotShellHandler(ip, port)
+        transport.start_server(server=server_interface)
+
+        channel = transport.accept(20)
+        if channel:
+            server_interface.event.wait(10)
+            interactive_shell(channel, ip, port)
+    except Exception as e:
+        print(f"[-] Session error with {ip}:{port} -> {e}")
+    finally:
+        if transport:
+            transport.close()
+        client_socket.close()
+        print(f"[-] Closed connection with {ip}:{port}")
+
+def get_or_generate_host_key(key_path):
+    if not os.path.exists(key_path):
+        key = paramiko.RSAKey.generate(2048)
+        key.write_private_key_file(key_path)
+        return key
+    return paramiko.RSAKey(filename=key_path)
+
+def start_server():
+    host_key = get_or_generate_host_key(HOST_KEY_FILE)
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((BIND_HOST, BIND_PORT))
+    server.listen(10)
+    print(f"[*] Interactive HoneyPot listeining on {BIND_HOST}:{BIND_PORT}")
+
+    while True:
+        try:
+            client_sock, client_addr = server.accept()
+            worker = threading.Thread(target=handel_ssh_client, args=(client_sock, client_addr, host_key), daemon=True,)
+            worker.start()
+        except KeyboardInterrupt:
+            print(f"\n[*] Terminating HoneyPot")
+            server.close
+            break
+
+if __name__ == "__main__":
+    start_server()
