@@ -12,7 +12,7 @@ GEOIP_CITY_DB = "data/GeoLite2-City.mmdb"
 GEOIP_ASN_DB = "data/GeoLite2-ASN.mmdb"
 
 # Replace with your actual key or load via os.getenv("ABUSEIPDB_API_KEY")
-ABUSEIPDB_API_KEY = os.getenv("ABUSEIPDB_API_KEY", "e537b784743341c80a1adc8d291d1a423efed75ba5938d1a70f351b685d8371a0dc7578ede83a437")
+ABUSEIPDB_API_KEY = os.getenv("ABUSEIPDB_API_KEY", "api")
 
 # In-memory IP cache to save API quota and accelerate processing
 ip_cache: Dict[str, Dict[str, Any]] = {}
